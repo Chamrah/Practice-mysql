@@ -1,0 +1,225 @@
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 16
+Server version: 8.0.19 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| ziad               |
++--------------------+
+5 rows in set (0.03 sec)
+
+mysql> create database Mobile;
+Query OK, 1 row affected (0.10 sec)
+
+mysql> create table moapplication(
+    -> language varchar(10),
+    -> basedonnees varchar(10)
+    -> );
+ERROR 1046 (3D000): No database selected
+mysql> use Mobile;
+Database changed
+mysql> create table moapplication(
+    -> language varchar(10),
+    -> basedonnees varchar(10)
+    -> );
+Query OK, 0 rows affected (1.32 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_mobile |
++------------------+
+| moapplication    |
++------------------+
+1 row in set (0.01 sec)
+
+mysql> show table moapplication;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'moapplication' at line 1
+mysql> select * from moapplication;
+Empty set (0.05 sec)
+
+mysql> desc moapplication;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| language    | varchar(10) | YES  |     | NULL    |       |
+| basedonnees | varchar(10) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+2 rows in set (0.02 sec)
+
+mysql> INSERT INTO moapplication(languages)
+    -> VALUES('JAVA')
+    -> VALUES('Kotlin');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'VALUES('Kotlin')' at line 3
+mysql> INSERT INTO moapplication(languages)
+    -> VALUES('JAVA');
+ERROR 1054 (42S22): Unknown column 'languages' in 'field list'
+mysql> INSERT INTO moapplication('languages')
+    -> VALUES('JAVA');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''languages')
+VALUES('JAVA')' at line 1
+mysql> alter table moapplication
+    -> add column projet_Num
+    -> first languages;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'first languages' at line 3
+mysql> alter table moapplication
+    -> add column projet_Num int
+    -> first languages;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'languages' at line 3
+mysql> alter table moapplication
+    -> add column projet_Num int
+    -> [FIRST language];
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[FIRST language]' at line 3
+mysql> alter table moapplication
+    -> add column projet_Num int
+    -> first language;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'language' at line 3
+mysql> alter table moapplication
+    -> add column projet_Num int
+    -> after language;
+Query OK, 0 rows affected (1.39 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show table moapplication;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'moapplication' at line 1
+mysql> desc moapplication;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| language    | varchar(10) | YES  |     | NULL    |       |
+| projet_Num  | int         | YES  |     | NULL    |       |
+| basedonnees | varchar(10) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table moapplication
+    -> drop column projet_num;
+Query OK, 0 rows affected (1.21 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc moapplication;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| language    | varchar(10) | YES  |     | NULL    |       |
+| basedonnees | varchar(10) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table moapplication
+    -> add projet_num int
+    -> BEFORE language;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BEFORE language' at line 3
+mysql> alter table moapplication
+    -> add column projet_num int
+    -> BEFORE language;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BEFORE language' at line 3
+mysql> alter table moapplication
+    -> add column projet_num int
+    -> first;
+Query OK, 0 rows affected (1.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc moapplication;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| projet_num  | int         | YES  |     | NULL    |       |
+| language    | varchar(10) | YES  |     | NULL    |       |
+| basedonnees | varchar(10) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> alter table moapplication
+    -> modify column projet_num varchar(10) not null;
+Query OK, 0 rows affected (1.90 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc moapplication;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| projet_num  | varchar(10) | NO   |     | NULL    |       |
+| language    | varchar(10) | YES  |     | NULL    |       |
+| basedonnees | varchar(10) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table moapplication
+    -> modify column projet_num int;
+Query OK, 0 rows affected (1.52 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc table moapplication;
++----+-------------+---------------+------------+------+---------------+------+---------+------+------+----------+-------+
+| id | select_type | table         | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra |
++----+-------------+---------------+------------+------+---------------+------+---------+------+------+----------+-------+
+|  1 | SIMPLE      | moapplication | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    1 |   100.00 | NULL  |
++----+-------------+---------------+------------+------+---------------+------+---------+------+------+----------+-------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> desc moapplication;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| projet_num  | int         | YES  |     | NULL    |       |
+| language    | varchar(10) | YES  |     | NULL    |       |
+| basedonnees | varchar(10) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table moapplication
+    -> rename column projet_num to id;
+Query OK, 0 rows affected (0.14 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc moapplication;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| id          | int         | YES  |     | NULL    |       |
+| language    | varchar(10) | YES  |     | NULL    |       |
+| basedonnees | varchar(10) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into moapplication
+    -> values(1,'java','musql');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select * from moapplication;
++------+----------+-------------+
+| id   | language | basedonnees |
++------+----------+-------------+
+|    1 | java     | musql       |
++------+----------+-------------+
+1 row in set (0.00 sec)
+
+mysql> insert into moapplication
+    -> values(2,'Kotlin','mysql');
+Query OK, 1 row affected (0.16 sec)
+
+mysql> select * from moapplication;
++------+----------+-------------+
+| id   | language | basedonnees |
++------+----------+-------------+
+|    1 | java     | musql       |
+|    2 | Kotlin   | mysql       |
++------+----------+-------------+
+2 rows in set (0.02 sec)
+
+mysql>
