@@ -1,0 +1,253 @@
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 20
+Server version: 8.0.19 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| centre_formation   |
+| information_schema |
+| mobile             |
+| mysql              |
+| performance_schema |
+| sys                |
+| ziad               |
++--------------------+
+7 rows in set (0.17 sec)
+
+mysql> drop database centre_formation;
+Query OK, 0 rows affected (0.46 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mobile             |
+| mysql              |
+| performance_schema |
+| sys                |
+| ziad               |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> create database centre_formation;
+Query OK, 1 row affected (0.08 sec)
+
+mysql> use centre_formation;
+Database changed
+mysql> create table etudiant(
+    -> num_CINEtu varchar(10) PRIMARY KEY,
+    -> nom_Etu varchar(45),
+    -> prenom_Etu varchar(45),
+    -> date_naissance date,
+    -> adresseEtu varchar(45),
+    -> ville_Etu varchar(45),
+    -> niveau_Etu varchar(45));
+Query OK, 0 rows affected (1.35 sec)
+
+mysql> show tables;
++----------------------------+
+| Tables_in_centre_formation |
++----------------------------+
+| etudiant                   |
++----------------------------+
+1 row in set (0.07 sec)
+
+mysql> desc centre_formation;
+ERROR 1146 (42S02): Table 'centre_formation.centre_formation' doesn't exist
+mysql> desc table centre_formation;
+ERROR 1146 (42S02): Table 'centre_formation.centre_formation' doesn't exist
+mysql> desc etudiant;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| num_CINEtu     | varchar(10) | NO   | PRI | NULL    |       |
+| nom_Etu        | varchar(45) | YES  |     | NULL    |       |
+| prenom_Etu     | varchar(45) | YES  |     | NULL    |       |
+| date_naissance | date        | YES  |     | NULL    |       |
+| adresseEtu     | varchar(45) | YES  |     | NULL    |       |
+| ville_Etu      | varchar(45) | YES  |     | NULL    |       |
+| niveau_Etu     | varchar(45) | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+7 rows in set (0.08 sec)
+
+mysql> create table inscription(
+    -> codeses int,
+    -> num_cinetu varchar(10),
+    -> type_cours varchar(45));
+Query OK, 0 rows affected (0.74 sec)
+
+mysql> desc inscription;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| codeses    | int         | YES  |     | NULL    |       |
+| num_cinetu | varchar(10) | YES  |     | NULL    |       |
+| type_cours | varchar(45) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> create table session(
+    -> codeses int KEY PRIMARY,
+    -> nomses varchar(45),
+    -> datedebut date,
+    -> datefin varchar(45));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',
+nomses varchar(45),
+datedebut date,
+datefin varchar(45))' at line 2
+mysql> create table session(
+    -> codesess int KEY PRIMARY,
+    -> datedebut date,
+    -> datefin varchar(45));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',
+datedebut date,
+datefin varchar(45))' at line 2
+mysql> show database centre_formation;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database centre_formation' at line 1
+mysql> create table session(
+    -> codeses int PRIMARY KEY,
+    -> nomses varchar(45),
+    -> datedebut date,
+    -> datefin varchar(45));
+Query OK, 0 rows affected (0.46 sec)
+
+mysql> SHOW TABLES;
++----------------------------+
+| Tables_in_centre_formation |
++----------------------------+
+| etudiant                   |
+| inscription                |
+| session                    |
++----------------------------+
+3 rows in set (0.00 sec)
+
+mysql> create table formation(
+    -> codeform int,
+    -> titreform varchar(45),
+    -> dureeform double,
+    -> prixform double;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 5
+mysql> create table formation(
+    -> codeform int,
+    -> titreform varchar(45);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 3
+mysql> create table formation(
+    -> codeform int KEY PRIMARY,
+    -> titreform varchar(45),
+    -> dureeform double,
+    -> prixform double,
+    -> session_codeses);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',
+titreform varchar(45),
+dureeform double,
+prixform double,
+session_codeses)' at line 2
+mysql> create table formation(
+    -> codeform int KEY PRIMARY,
+    -> titreform varchar(45),
+    -> dureeform double,
+    -> prixform double,
+    -> session_codeses);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',
+titreform varchar(45),
+dureeform double,
+prixform double,
+session_codeses)' at line 2
+mysql> create table formation(
+    -> codeform int PRIMARY KEY,
+    -> titreform varchar(45),
+    -> dureeform double,
+    -> prixform double,
+    -> session_codeses);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 6
+mysql> create table formation(
+    -> codeform int PRIMARY KEY,
+    -> titreform varchar(45),
+    -> dureeform double,
+    -> prixform double,
+    -> session_codeses INT );
+Query OK, 0 rows affected (1.02 sec)
+
+mysql> create table catalogue(
+    -> codespece int,
+    -> codeform int);
+Query OK, 0 rows affected (0.43 sec)
+
+mysql> show tables;
++----------------------------+
+| Tables_in_centre_formation |
++----------------------------+
+| catalogue                  |
+| etudiant                   |
+| formation                  |
+| inscription                |
+| session                    |
++----------------------------+
+5 rows in set (0.00 sec)
+
+mysql> create table specialites(
+    -> codespec int PRIMARY KEY,
+    -> nomspec varchar(45),
+    -> descspec varchar(45));
+Query OK, 0 rows affected (0.55 sec)
+
+mysql> show tables;
++----------------------------+
+| Tables_in_centre_formation |
++----------------------------+
+| catalogue                  |
+| etudiant                   |
+| formation                  |
+| inscription                |
+| session                    |
+| specialites                |
++----------------------------+
+6 rows in set (0.00 sec)
+
+mysql> alter table inscription
+    -> modify column typecours varchar(45) NOT NULL;
+ERROR 1054 (42S22): Unknown column 'typecours' in 'inscription'
+mysql> alter table inscription
+    -> modify  typecours varchar(45) NOT NULL;
+ERROR 1054 (42S22): Unknown column 'typecours' in 'inscription'
+mysql> alter table inscription
+    -> modify column type_cours varchar(45) NOT NULL;
+Query OK, 0 rows affected (1.90 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc inscription;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| codeses    | int         | YES  |     | NULL    |       |
+| num_cinetu | varchar(10) | YES  |     | NULL    |       |
+| type_cours | varchar(45) | NO   |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table session
+    -> add check(datefin > datedebut);
+Query OK, 0 rows affected (2.38 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table specialite
+    -> add column active int;
+ERROR 1146 (42S02): Table 'centre_formation.specialite' doesn't exist
+mysql> alter table specialites
+    -> add column active int;
+Query OK, 0 rows affected (0.45 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>
